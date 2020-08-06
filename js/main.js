@@ -1,12 +1,27 @@
+const pawns = [];
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight);
+
+  pawns.push(
+    new Pawn(
+      createVector(random(0, width), random(0, height)),
+      createVector(1, 0),
+      10
+    )
+  );
 }
 
 function draw() {
-    background(255);
-    text("put your p5.js code here",10, frameCount % height);
-}
+  background(30);
+  stroke(255);
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+  pawns.forEach((pawn) => {
+    pawn.follow(mouseX, mouseY);
+    pawn.draw();
+  });
 }
